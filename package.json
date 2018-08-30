@@ -1,0 +1,26 @@
+{
+  "name": "real-deal-doc",
+  "version": "1.0.0",
+  "description": "A deck of cards.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primozich/real-deal-deck-of-cards.git"
+  },
+  "keywords": [
+    "cards",
+    "deck"
+  ],
+  "author": "Christian Primozich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/primozich/real-deal-deck-of-cards/issues"
+  },
+  "homepage": "https://github.com/primozich/real-deal-deck-of-cards#readme"
+}
