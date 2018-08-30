@@ -64,12 +64,19 @@ describe('deck', function() {
             assert.equal(clubs.length, rdDoC.cardTypes.length);
         });
 
-        let firstCard = deck.allCards[0];
         it('shuffle should randomize the cards', function() {
+            let decksAreDifferent = false;
+            let originalDeck = deck.allCards.slice(0);
             deck.shuffle();
-            let newFirstCard = deck.allCards[0];
-            assert.notEqual(newFirstCard[0], firstCard[0]);
-            assert.notEqual(newFirstCard[2], firstCard[2]);
-        })
+            let newDeck = deck.allCards;
+            for (let i = 1; i < originalDeck.length; i++) {
+                let aCard = originalDeck[i];
+                let bCard = newDeck[i];
+                if ((aCard[0] !== bCard[0]) || (aCard[2] !== bCard[2])) {
+                    decksAreDifferent = true;
+                }
+            }
+            assert.equal(decksAreDifferent, true);
+        });
     });
 });

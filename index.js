@@ -34,12 +34,25 @@ const cards = [
 let deck = {
     allCards: [],
     shuffle: () => {
-        console.log('Shuffling....');
+        let currentIndex = deck.allCards.length,
+            temporaryValue,
+            randomIndex;
+    
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+    
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+    
+            // And swap it with the current element.
+            temporaryValue = deck.allCards[currentIndex];
+            deck.allCards[currentIndex] = deck.allCards[randomIndex];
+            deck.allCards[randomIndex] = temporaryValue;
+        }
+    
+        return deck.allCards;
     },
-};
-
-deck.shuffle = () => {
-    console.log
 }
 
 const createDeck = () => {
