@@ -82,7 +82,7 @@ class Deck {
 
     nextCard() {
         if (this.cardIndex >= this.allCards.length) {
-            throw "All cards have been dealt."
+            return false;
         }
 
         let card = this.allCards[this.cardIndex];
