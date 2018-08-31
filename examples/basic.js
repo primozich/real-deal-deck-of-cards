@@ -1,6 +1,6 @@
 'use strict';
 
-let realDealDeckOfCards = require('./index');
+let realDealDeckOfCards = require('../index');
 
 let deck = realDealDeckOfCards.createDeck();
 let next = deck.nextCard();
