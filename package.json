@@ -4,8 +4,7 @@
   "description": "A deck of cards.",
   "main": "index.js",
   "directories": {
-    "test": "test",
-    ".git": ".git"
+    "test": "test"
   },
   "scripts": {
     "test": "mocha"
