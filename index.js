@@ -31,13 +31,39 @@ const cards = [
     ['King', 10],
 ];
 
-let deck = {
-    allCards: [],
-    shuffle: () => {
-        let currentIndex = deck.allCards.length,
+class Card {
+    constructor(suit, name, value) {
+        this.suit = suit;
+        this.name = name;
+        this.value = value;
+    }
+
+    isSameAs(cardToCheck) {
+        return (this.suit === cardToCheck.suit) 
+            && (this.name === cardToCheck.name) 
+            && (this.value === cardToCheck.value);
+    }
+}
+
+class Deck {
+    constructor() {
+        this.allCards = [];
+        this.cardIndex = 0;
+
+        for (let i = 0; i < suits.length; i++) {
+            for (let j = 0; j < cards.length; j++) {
+                this.allCards.push(new Card(suits[i], cards[j][0], cards[j][1]));
+            }
+        }
+    }
+
+    shuffle() {
+        this.cardIndex = 0;
+
+        let currentIndex = this.allCards.length,
             temporaryValue,
             randomIndex;
-    
+
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
     
@@ -46,21 +72,27 @@ let deck = {
             currentIndex -= 1;
     
             // And swap it with the current element.
-            temporaryValue = deck.allCards[currentIndex];
-            deck.allCards[currentIndex] = deck.allCards[randomIndex];
-            deck.allCards[randomIndex] = temporaryValue;
+            temporaryValue = this.allCards[currentIndex];
+            this.allCards[currentIndex] = this.allCards[randomIndex];
+            this.allCards[randomIndex] = temporaryValue;
         }
-    
-        return deck.allCards;
-    },
+
+        return this.allCards;
+    }
+
+    nextCard() {
+        if (this.cardIndex >= this.allCards.length) {
+            throw "All cards have been dealt."
+        }
+
+        let card = this.allCards[this.cardIndex];
+        this.cardIndex++;
+        return card;
+    }
 }
 
-const createDeck = () => {
-    for (let i = 0; i < suits.length; i++) {
-        for (let j = 0; j < cards.length; j++) {
-            deck.allCards.push([suits[i], cards[j][0], cards[j][1]]);
-        }
-    }
+let createDeck = () => {
+    let deck = new Deck();
 
     return deck;
 }

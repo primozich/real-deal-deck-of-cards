@@ -13,7 +13,7 @@ describe('cards', function() {
             assert(rdDoC.cardTypes.length, 13);
         })
     })
-})
+});
 
 describe('deck', function() {
     describe('#createDeck()', function() {
@@ -27,7 +27,7 @@ describe('deck', function() {
             for (let i = 1; i < originalDeck.length; i++) {
                 let aCard = originalDeck[i];
                 let bCard = newDeck[i];
-                if ((aCard[0] !== bCard[0]) || (aCard[2] !== bCard[2])) {
+                if (!aCard.isSameAs(bCard)) {
                     decksAreDifferent = true;
                 }
             }
@@ -42,7 +42,7 @@ describe('deck', function() {
             let spades = [];
             for (let i = 0; i < deck.allCards.length; i++) {
                 let card = deck.allCards[i];
-                if (card[0] === rdDoC.suits[0]) {
+                if (card.suit === rdDoC.suits[0]) {
                     spades.push(card);
                 }
             }
@@ -52,7 +52,7 @@ describe('deck', function() {
             let hearts = [];
             for (let i = 0; i < deck.allCards.length; i++) {
                 let card = deck.allCards[i];
-                if (card[0] === rdDoC.suits[1]) {
+                if (card.suit === rdDoC.suits[1]) {
                     hearts.push(card);
                 }
             }
@@ -62,7 +62,7 @@ describe('deck', function() {
             let diamonds = [];
             for (let i = 0; i < deck.allCards.length; i++) {
                 let card = deck.allCards[i];
-                if (card[0] === rdDoC.suits[2]) {
+                if (card.suit === rdDoC.suits[2]) {
                     diamonds.push(card);
                 }
             }
@@ -72,11 +72,35 @@ describe('deck', function() {
             let clubs = [];
             for (let i = 0; i < deck.allCards.length; i++) {
                 let card = deck.allCards[i];
-                if (card[0] === rdDoC.suits[3]) {
+                if (card.suit === rdDoC.suits[3]) {
                     clubs.push(card);
                 }
             }
             assert.equal(clubs.length, rdDoC.cardTypes.length);
+        });
+    });
+
+    describe('#nextCard()', function() {
+        it('should provide 52 different cards', function() {
+            let testPasses = true;
+            let prevCards = [];
+            let deck = rdDoC.createDeck();
+
+            Loop1:
+            for (let i = 0; i < 52; i++) {
+                let nextCard = deck.nextCard();
+                for (let j = 0; j < prevCards.length; j++) {
+                    let prevCard = prevCards[j];
+                    if (nextCard.isSameAs(prevCard)) {
+                        testPasses = false;
+                        break Loop1;
+                    }
+                }
+
+                prevCards.push(nextCard);
+            }
+
+            assert.equal(testPasses, true);
         });
     });
 });
