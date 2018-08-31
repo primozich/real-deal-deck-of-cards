@@ -19,6 +19,21 @@ describe('deck', function() {
     describe('#createDeck()', function() {
         let deck = rdDoC.createDeck();
 
+        it('shuffle should randomize the cards', function() {
+            let decksAreDifferent = false;
+            let originalDeck = deck.allCards.slice(0);
+            deck.shuffle();
+            let newDeck = deck.allCards;
+            for (let i = 1; i < originalDeck.length; i++) {
+                let aCard = originalDeck[i];
+                let bCard = newDeck[i];
+                if ((aCard[0] !== bCard[0]) || (aCard[2] !== bCard[2])) {
+                    decksAreDifferent = true;
+                }
+            }
+            assert.equal(decksAreDifferent, true);
+        });
+
         it('should return 52 cards', function() {
             assert.equal(deck.allCards.length, 52);
         });
@@ -62,21 +77,6 @@ describe('deck', function() {
                 }
             }
             assert.equal(clubs.length, rdDoC.cardTypes.length);
-        });
-
-        it('shuffle should randomize the cards', function() {
-            let decksAreDifferent = false;
-            let originalDeck = deck.allCards.slice(0);
-            deck.shuffle();
-            let newDeck = deck.allCards;
-            for (let i = 1; i < originalDeck.length; i++) {
-                let aCard = originalDeck[i];
-                let bCard = newDeck[i];
-                if ((aCard[0] !== bCard[0]) || (aCard[2] !== bCard[2])) {
-                    decksAreDifferent = true;
-                }
-            }
-            assert.equal(decksAreDifferent, true);
         });
     });
 });
