@@ -4,13 +4,13 @@ let rdDoC = require('../index');
 describe('cards', function() {
     describe('#suits', function() {
         it('there should be 4 suits', function() {
-            assert(rdDoC.suits.length, 4);
+            assert.equal(rdDoC.suits.length, 4);
         })
     })
 
     describe('#cards', function() {
         it('there should be 13 types of cards', function() {
-            assert(rdDoC.cardTypes.length, 13);
+            assert.equal(rdDoC.cardTypes.length, 13);
         })
     })
 });
