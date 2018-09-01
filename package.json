@@ -1,6 +1,6 @@
 {
   "name": "real-deal-deck-of-cards",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A deck of cards.",
   "main": "index.js",
   "directories": {
