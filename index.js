@@ -4,8 +4,8 @@
 *   Card = [Suit, Name, Value]
 *
 *   NOTE: Aces in card games are sometimes special in that the value 
-*   can be 1 or 11 (e.g. blackjack). That has to be handled at the 
-*   application level.
+*   can be 1 or 11 (e.g. blackjack) or hi/low (e.g poker). That has 
+*   to be handled at the application level.
 */
 
 const suits = [
@@ -15,33 +15,43 @@ const suits = [
     'CLUBS',
 ];
 
+// Name, point value, poker value
 const cards = [
-    ['Ace', 1],
-    ['Two', 2],
-    ['Three', 3],
-    ['Four', 4],
-    ['Five', 5],
-    ['Six', 6],
-    ['Seven', 7],
-    ['Eight', 8],
-    ['Nine', 9],
-    ['Ten', 10],
-    ['Jack', 10],
-    ['Queen', 10],
-    ['King', 10],
+    ['Ace', 1, 14],
+    ['Two', 2, 2],
+    ['Three', 3, 3],
+    ['Four', 4, 4],
+    ['Five', 5, 5],
+    ['Six', 6, 6],
+    ['Seven', 7, 7],
+    ['Eight', 8, 8],
+    ['Nine', 9, 9],
+    ['Ten', 10, 10],
+    ['Jack', 10, 11],
+    ['Queen', 10, 12],
+    ['King', 10, 13],
 ];
 
 class Card {
-    constructor(suit, name, value) {
+    constructor(suit, name, value, pokerValue) {
         this.suit = suit;
         this.name = name;
         this.value = value;
+        this.pokerValue = pokerValue;
     }
 
     isSameAs(cardToCheck) {
         return (this.suit === cardToCheck.suit) 
             && (this.name === cardToCheck.name) 
             && (this.value === cardToCheck.value);
+    }
+
+    isSameSuit(cardToCheck) {
+        return this.suit === cardToCheck.suit;
+    }
+
+    isSameName(cardToCheck) {
+        return this.name === cardToCheck.name;
     }
 }
 
@@ -52,7 +62,7 @@ class Deck {
 
         for (let i = 0; i < suits.length; i++) {
             for (let j = 0; j < cards.length; j++) {
-                this.allCards.push(new Card(suits[i], cards[j][0], cards[j][1]));
+                this.allCards.push(new Card(suits[i], cards[j][0], cards[j][1], cards[j][2]));
             }
         }
     }
