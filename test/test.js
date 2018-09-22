@@ -134,4 +134,8 @@ describe('Card', function() {
         let b = new rdDoC.Card(rdDoC.suits[3], 'Three', 3, 3);
         assert(!a.isSameName(b));
     });
+    it('can create a card', function() {
+        let c = new rdDoC.Card(rdDoC.suits[0], 'Ace');
+        assert.equal(c.value, 1);
+    });
 });

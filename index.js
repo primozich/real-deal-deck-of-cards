@@ -37,12 +37,12 @@ class Card {
         this.suit = suit;
         this.name = name;
         let cardTemplate = cards.filter(card => card[0] === name);
-        if (cardTemplate) {
-            this.value = (value ? value : cardTemplate[1]);
-            this.pokerValue = (pokerValue ? pokerValue : cardTemplate[2]);
+        if (cardTemplate.length === 1) {
+            this.value = (value ? value : cardTemplate[0][1]);
+            this.pokerValue = (pokerValue ? pokerValue : cardTemplate[0][2]);
         }
         else {
-            throw "No card of type: " + name;
+            throw "Needs to be a single  card type template: " + name;
         }
     }
 
