@@ -104,3 +104,34 @@ describe('deck', function() {
         });
     });
 });
+
+describe('Card', function() {
+    it('same cards', function() {
+        let a = new rdDoC.Card(rdDoC.suits[0], 'Ace', 1, 14);
+        let b = new rdDoC.Card(rdDoC.suits[0], 'Ace', 1, 14);
+        assert(a.isSameAs(b));
+    });
+
+    it('same suit', function() {
+        let a = new rdDoC.Card(rdDoC.suits[0], 'Two', 2, 2);
+        let b = new rdDoC.Card(rdDoC.suits[0], 'Three', 3, 3);
+        assert(a.isSameSuit(b));
+    });
+
+    it('different suit', function() {
+        let a = new rdDoC.Card(rdDoC.suits[0], 'Two', 2, 2);
+        let b = new rdDoC.Card(rdDoC.suits[1], 'Three', 3, 3);
+        assert(!a.isSameSuit(b));
+    });
+
+    it('same name', function() {
+        let a = new rdDoC.Card(rdDoC.suits[0], 'King', 10, 13);
+        let b = new rdDoC.Card(rdDoC.suits[1], 'King', 10, 13);
+        assert(a.isSameName(b));
+    });
+    it('different name', function() {
+        let a = new rdDoC.Card(rdDoC.suits[2], 'Two', 2, 2);
+        let b = new rdDoC.Card(rdDoC.suits[3], 'Three', 3, 3);
+        assert(!a.isSameName(b));
+    });
+});

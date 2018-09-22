@@ -111,4 +111,5 @@ module.exports = {
     suits: suits,
     cardTypes: cards,
     createDeck: createDeck,
+    Card: Card,
 }
