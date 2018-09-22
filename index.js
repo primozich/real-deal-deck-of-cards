@@ -36,8 +36,14 @@ class Card {
     constructor(suit, name, value, pokerValue) {
         this.suit = suit;
         this.name = name;
-        this.value = value;
-        this.pokerValue = pokerValue;
+        let cardTemplate = cards.filter(card => card[0] === name);
+        if (cardTemplate) {
+            this.value = (value ? value : cardTemplate[1]);
+            this.pokerValue = (pokerValue ? pokerValue : cardTemplate[2]);
+        }
+        else {
+            throw "No card of type: " + name;
+        }
     }
 
     isSameAs(cardToCheck) {
