@@ -123,4 +123,5 @@ module.exports = {
     cardTypes: cards,
     createDeck: createDeck,
     Card: Card,
+    Deck: Deck
 }
