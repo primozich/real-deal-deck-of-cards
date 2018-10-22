@@ -62,13 +62,18 @@ class Card {
 }
 
 class Deck {
-    constructor() {
-        this.allCards = [];
+    constructor(allCards = null) {
         this.cardIndex = 0;
+        if (allCards) {
+            this.allCards = allCards;
+        }
+        else {
+            this.allCards = [];
 
-        for (let i = 0; i < suits.length; i++) {
-            for (let j = 0; j < cards.length; j++) {
-                this.allCards.push(new Card(suits[i], cards[j][0], cards[j][1], cards[j][2]));
+            for (let i = 0; i < suits.length; i++) {
+                for (let j = 0; j < cards.length; j++) {
+                    this.allCards.push(new Card(suits[i], cards[j][0], cards[j][1], cards[j][2]));
+                }
             }
         }
     }
